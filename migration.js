@@ -1,20 +1,16 @@
-import { readFile } from "fs.promise";
-
-class UserImporter {
-	constructor(fileName) {
-		this.fileName = fileName
-	}
-	async import() {
-		await readFile(this.fileName, "utf8");
-	}
-
-	get fileName() {
-		return this.fileName;
-	}
-}
+import UserImporter from "./user/UserImporter.js";
+import UserArcAPI from "./user/UserArcAPI.js";
 
 
-const userImporter = new UserImporter("./resources/authors.json");
+const userArcAPI = new UserArcAPI(
+	"https://api.sandbox.xlmedia.arcpublishing.com/author",
+	"Bearer TG5SJ113QHIQ1FKKR3P6J8J66A1H3DNJlHBlDij1Nd3o0r9b8AkAYQQvwrLUueEFz7gdd4SR"
+);
+const userImporter = new UserImporter(
+	"./resources/authors.json",
+	"./resources/schema-mappings/users-to-arc-schema-map.json",
+	userArcAPI
+);
 userImporter.import();
 
 
