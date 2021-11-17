@@ -1,3 +1,25 @@
 {
-	"a":1
+	"_id": "_id",
+	"slug": "slug",
+	"byline": "byline",
+	"firstName": "firstName",
+	"lastName": "lastName",
+	"image": "image",
+	"expertise": "expertise",
+	"location": "location",
+	"role": "role",
+	"author_type": "author_type",
+	"email": "email",
+	"books": "books",
+	"awards": "awards",
+	"education": "education",
+	"podcasts": "podcasts",
+	"twitter": "twitter",
+	"facebook": "facebook",
+	"rss": "rss",
+	"gplus": "gplus",
+	"linkedin": "linkedin",
+	"bio_page": "bio_page",
+	"bio": "bio",
+	"longBio": "longBio"
 }
