@@ -11,12 +11,12 @@ class ContentImporter {
 		this.contentANSMApper = new ContentANSMApper(dataFileName, schemaFileName);
 		this.imageImporter = new ImageImporter(
 			dataFileName,
-			"./resources/schema-mappings/contents-images-schema.json",
-			"./resources/schema-mappings/content-images-to-arc-schema.json",
+			`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/contents-images-schema.json`,
+			`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/content-images-to-arc-schema.json`,
 			new ImageArcAPI(
 				"https://api.sandbox.xlmedia.arcpublishing.com",
 				"Bearer TG5SJ113QHIQ1FKKR3P6J8J66A1H3DNJlHBlDij1Nd3o0r9b8AkAYQQvwrLUueEFz7gdd4SR",
-				"./resources/output-files/author-images-to-arc-map.json"
+				`./resources/${process.env.SITE_FILE_PREFIX}/output-files/author-images-to-arc-map.json`
 			)
 		);
 		this.contentArcAPI = contentArcAPI;
@@ -32,7 +32,7 @@ class ContentImporter {
 		//this.contentANSMApper.writeArcContentsToFile("./resources/output-files/authors-to-arc-map.json", arcNewContents);
 
 		//console.log(JSON.stringify(await this.contentArcAPI.getContent()));
-		let arcNewContents = JSON.parse(await readFile("./resources/schema-examples/content-arc-response.json", "utf8"));
+		let arcNewContents = JSON.parse(await readFile(`./resources/${process.env.SITE_FILE_PREFIX}/schema-examples/content-arc-response.json`, "utf8"));
 		//console.log(arcNewContents);
 		switch (flag) {
 			case "insert":

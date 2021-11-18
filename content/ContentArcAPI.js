@@ -65,7 +65,7 @@ class ContentArcAPI extends ArcAPI {
 					}
 				}
 			})
-		await this.writeArcContentsToFile("./resources/output-files/content-to-arc-map.json", arcMappedData);
+		await this.writeArcContentsToFile(`./resources/${process.env.SITE_FILE_PREFIX}/output-files/content-to-arc-map.json`, arcMappedData);
 	}
 
 	async writeArcContentsToFile(fileName, arcNewContents, flag = 'w') {

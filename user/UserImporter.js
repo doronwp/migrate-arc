@@ -11,12 +11,12 @@ class UserImporter {
 		this.userANSMApper = new UserANSMApper(dataFileName, schemaFileName);
 		this.imageImporter = new ImageImporter(
 			dataFileName,
-			"./resources/schema-mappings/users-images-schema.json",
-			"./resources/schema-mappings/user-images-to-arc-schema.json",
+			`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/users-images-schema.json`,
+			`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/user-images-to-arc-schema.json`,
 			new ImageArcAPI(
 				"https://api.sandbox.xlmedia.arcpublishing.com",
 				"Bearer TG5SJ113QHIQ1FKKR3P6J8J66A1H3DNJlHBlDij1Nd3o0r9b8AkAYQQvwrLUueEFz7gdd4SR",
-				"./resources/output-files/author-images-to-arc-map.json"
+				`./resources/${process.env.SITE_FILE_PREFIX}/output-files/author-images-to-arc-map.json`
 			)
 		);
 		this.userArcAPI = userArcAPI;
@@ -27,7 +27,7 @@ class UserImporter {
 		const arcUploadedImages = await this.imageImporter.import();
 		let arcNewUsers = await this.userANSMApper.createArcUsersJson(arcUploadedImages, this.imageImporter.imageANSMApper.schemaFilter);
 		// save the new authors map to arc in file.
-		this.userANSMApper.writeArcUsersTpFile("./resources/output-files/authors-to-arc-map.json", arcNewUsers);
+		this.userANSMApper.writeArcUsersTpFile(`./resources/${process.env.SITE_FILE_PREFIX}/output-files/authors-to-arc-map.json`, arcNewUsers);
 
 		switch (flag) {
 			case "insert":

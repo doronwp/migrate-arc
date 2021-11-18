@@ -12,8 +12,8 @@ const importUsers = (action = "insert") => {
 		process.env.ARC_API_TOKEN
 	);
 	const userImporter = new UserImporter(
-		"./resources/input-files/users.json",
-		"./resources/schema-mappings/users-to-arc-schema-map.json",
+		`./resources/${process.env.SITE_FILE_PREFIX}/input-files/users.json`,
+		`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/users-to-arc-schema-map.json`,
 		userArcAPI
 	);
 	userImporter.import(action);
@@ -28,13 +28,13 @@ const importContent = (action = "insert") => {
 		process.env.ARC_API_TOKEN
 	);
 	const contentImporter = new ContentImporter(
-		"./resources/input-files/content",
-		"./resources/schema-mappings/content-to-arc-schema-map.json",
+		`./resources/${process.env.SITE_FILE_PREFIX}/input-files/content`,
+		`./resources/${process.env.SITE_FILE_PREFIX}/schema-mappings/content-to-arc-schema-map.json`,
 		contentArcAPI
 	);
 	contentImporter.import(action, process.env.CANONICAL_WEBSITE);
 	console.log(`Content ${action} sucess`);
 }
 
-//importUsers();
-importContent();
+importUsers("delete");
+//importContent();
